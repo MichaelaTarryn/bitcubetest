@@ -22,22 +22,23 @@ test.describe('navigation', () => {
   test.beforeEach(async ({ page }) => {
     // Go to the starting url before each test.
     await page.goto('https://qainterview.pythonanywhere.com/');
-  });
+  })
+
 
 test('main navigation to QA interview.pythonanywhere', async ({ page }) => {
     // 
     await expect(page).toHaveURL('https://qainterview.pythonanywhere.com/');
   });
+});
 
-
-  test.only('Validation of 12', async ({ page }) => {
+test('Validation of 12', async ({ page }) => {
       await page.goto('https://qainterview.pythonanywhere.com/');
 
       //Enter 12
-      await page.fill('#number-input','12');
+      await page.fill('#number','12');
       
       //trigger caluclator
-      await page.click('#calculator!-btn');
+      await page.click('#getFactorial');
     // 
-    await expect(page.locator('#results')).toHaveText('479001600');
-  )};
+    await expect(page.locator('#resultDiv')).toHaveText('The factorial of 12 is: 479001600');
+  });
