@@ -1,12 +1,11 @@
 // @ts-check
 import { test, expect } from '@playwright/test';
 
-//test('The greatest factorial calculator! Header check', async ({ page }) => {
-//  await page.goto('https://qainterview.pythonanywhere.com/');
+test('The greatest factorial calculator! Header check', async ({ page }) => {
+ await page.goto('https://qainterview.pythonanywhere.com/');
 
-  // Expect a title "to contain" a substring.
-//  await expect(page).toHaveTitle(/factorial/);
-//});
+ await expect(page.locator('h1')).toHaveText('The greatest factorial calculator!')
+});
 
 test('get started link', async ({ page }) => {
   await page.goto('https://playwright.dev/');
@@ -41,4 +40,37 @@ test('Validation of 12', async ({ page }) => {
       await page.click('#getFactorial');
     // 
     await expect(page.locator('#resultDiv')).toHaveText('The factorial of 12 is: 479001600');
+  });
+
+  test('Emputy string', async ({ page }) => {
+      await page.goto('https://qainterview.pythonanywhere.com/');
+      
+      //trigger caluclator
+      await page.click('#getFactorial');
+    // 
+    await expect(page.locator('#resultDiv')).toHaveText('Please enter an integer');
+  });
+
+//recheck
+test('Negative amount', async ({ page }) => {
+      await page.goto('https://qainterview.pythonanywhere.com/');
+
+      //Enter 12
+      await page.fill('#number','-1000000');
+      
+      //trigger caluclator
+      await page.click('#getFactorial');
+    // 
+    await expect(page.locator('#resultDiv')).toHaveText('Please enter an integer');
+  });
+
+test('Links ', async ({ page }) => {
+      await page.goto('https://qainterview.pythonanywhere.com/');
+
+      const button =page.locator('#getFactorial')
+      //Enter 12
+      await page.fill('#number','-1000000');
+      
+    // 
+    await expect(button).toHaveCSS('background-color','#5cb85c');
   });
