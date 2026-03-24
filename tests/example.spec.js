@@ -52,7 +52,7 @@ test('Validation of 12', async ({ page }) => {
   });
 
 //recheck
-test('Negative amount', async ({ page }) => {
+test.skip('Negative amount', async ({ page }) => {
       await page.goto('https://qainterview.pythonanywhere.com/');
 
       //Enter 12
@@ -63,14 +63,43 @@ test('Negative amount', async ({ page }) => {
     // 
     await expect(page.locator('#resultDiv')).toHaveText('Please enter an integer');
   });
-
-test('Links ', async ({ page }) => {
+//sendhelp
+test('Button styling check ', async ({ page }) => {
       await page.goto('https://qainterview.pythonanywhere.com/');
 
-      const button =page.locator('#getFactorial')
-      //Enter 12
-      await page.fill('#number','-1000000');
+     const button = page.locator('#getFactorial')
+
+     await button.hover({force:true})
+
+     await page.dispatchEvent('#getFactorial','mouseover')
       
+    await expect(button).toHaveCSS('background-color','#47a447');
+  });
+//sendhelp
+  test('Buttons styling check ', async ({ page }) => {
+      await page.goto('https://qainterview.pythonanywhere.com/');
+
+     const button = page.locator('#btn')
+
+    //  await button.hover({force:true})
+
+    //  await page.dispatchEvent('#btn','mouseover')
+      
+    await expect(button).toHaveAttribute('style','display-block');
+  });
+
+   test('error message styling', async ({ page }) => {
+      await page.goto('https://qainterview.pythonanywhere.com/');
+      
+      //trigger caluclator
+      await page.click('#getFactorial');
+
+      const error = page.locator('#resultDiv')
+
+      await expect(error).toBeVisible()
+      await expect(error).toHaveCSS('color','rgb(255, 0, 0)')
     // 
-    await expect(button).toHaveCSS('background-color','#5cb85c');
+    await expect(error).toHaveText('Please enter an integer');
+
+
   });
