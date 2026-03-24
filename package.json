@@ -1,0 +1,23 @@
+{
+  "name": "bitcubetest",
+  "version": "1.0.0",
+  "description": "bitcubetest",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MichaelaTarryn/bitcubetest.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/MichaelaTarryn/bitcubetest/issues"
+  },
+  "homepage": "https://github.com/MichaelaTarryn/bitcubetest#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "@types/node": "^25.5.0"
+  }
+}
