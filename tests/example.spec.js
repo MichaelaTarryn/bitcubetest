@@ -1,5 +1,6 @@
-// @ts-check
+// @ts-nocheck
 import { test, expect } from '@playwright/test';
+import { type } from 'node:os';
 
 test('The greatest factorial calculator! Header check', async ({ page }) => {
  await page.goto('https://qainterview.pythonanywhere.com/');
@@ -51,35 +52,6 @@ test('Validation of 12', async ({ page }) => {
     await expect(page.locator('#resultDiv')).toHaveText('Please enter an integer');
   });
 
-//recheck
-test.only('Negative amount', async ({ page }) => {
-      await page.goto('https://qainterview.pythonanywhere.com/');
-
-      //Enter 12
-      await page.fill('#number','-1000000');
-      
-      //trigger caluclator
-      //await page.click('#getFactorial');
-
-       await page.getByText('Calculate!').click()
-
-       await expect (page.locator('#resultDiv')).toBeVisible()
-    // 
-    await expect(page.locator('#resultDiv')).toHaveText('Please enter an integer');
-  });
-//sendhelp
-test.skip('Button styling check ', async ({ page }) => {
-      await page.goto('https://qainterview.pythonanywhere.com/');
-
-     const button = page.locator('#getFactorial')
-
-     await button.hover({force:true})
-
-     await page.dispatchEvent('#getFactorial','mouseover')
-      
-    await expect(button).toHaveCSS('background-color','#47a447');
-  });
-//sendhelp
   test('Buttons styling check ', async ({ page }) => {
       await page.goto('https://qainterview.pythonanywhere.com/');
 
@@ -104,23 +76,23 @@ test.skip('Button styling check ', async ({ page }) => {
 
   });
 //it working it just the link are wrong for privacy and term
-   test.skip('Links', async ({ page }) => {
-      await page.goto('https://qainterview.pythonanywhere.com/');
+   test('Links', async ({ page }) => {
+    await page.goto('https://qainterview.pythonanywhere.com/');
       
-     await page.getByText('About').click()
-await expect(page).toHaveURL('https://qainterview.pythonanywhere.com/about');
+    await page.getByText('About').click()
+    await expect(page).toHaveURL('https://qainterview.pythonanywhere.com/about');
 
-await page.goBack()
+    await page.goBack()
 
-     await page.getByText('privacy').click()
+    await page.getByText('privacy').click()
 
-await expect(page).toHaveURL('https://qainterview.pythonanywhere.com/privacy');
+    await expect(page).toHaveURL('https://qainterview.pythonanywhere.com/privacy');
 
-await page.goBack()
+    await page.goBack()
 
- await page.getByText('terms and conditions').click()
+    await page.getByText('terms and conditions').click()
 
-await expect(page).toHaveURL('https://qainterview.pythonanywhere.com/terms');
-await page.goBack()
+    await expect(page).toHaveURL('https://qainterview.pythonanywhere.com/terms');
+    await page.goBack()
 
   });
